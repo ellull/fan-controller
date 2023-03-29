@@ -25,7 +25,7 @@ Usage
 WIP
 
 - Download the Gerber file and order the PCB to the manufacturer of your choice.
-- Download the [BOM file](hardware/BOM.csv) and order the components.
+- Download the [BOM file](hardware/BOM.tsv) and order the components.
 - Assemble the board.
 - Upload the firmware.
 - Integrate in Home Assistant.
