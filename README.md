@@ -35,7 +35,7 @@ WIP
 A bit of history
 ----------------
 
-This is a hobby project to build a device able to control a small fan which can easily be integrated with Home Assistant.
+This is a hobby project aimed to build a device able to control a small fan which can easily be integrated with Home Assistant.
 
 I build it because I wanted to hide my NAS inside a cabinet and some kind of ventilation was required to avoid overheating. I also wanted to be able to monitor temperature inside the cabinet and to change the speed of the fan. I hate noise and I also have a very fine earing: for me a 2000 RPM fan is too noisy at night. And I wanted to do it from my phone or from an automation in Home Assistant.
 

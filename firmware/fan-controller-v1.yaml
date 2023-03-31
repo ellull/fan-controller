@@ -1,0 +1,130 @@
+substitutions:
+  device_id: fan_controller
+  device_name: fan-controller
+
+external_components:
+  - source: github://pr#4491
+    refresh: 0s
+    components: 
+      - emc2101
+
+dashboard_import:
+  package_import_url: github://ellull/fan-controller/fan-controller-v1.yaml@v1
+  import_full_config: false
+
+esphome:
+  name: ${device_name}
+  name_add_mac_suffix: true
+  friendly_name: Fan Controller
+  comment: Fan controller for ESPHome
+  project:
+    name: ellull.fan-controller
+    version: "1.0"
+
+esp32:
+  board: wemos_d1_mini32
+  framework:
+    type: esp-idf
+
+logger:
+  level: WARN
+
+wifi:
+  enable_btm: true
+  enable_rrm: true
+  
+  ap:
+    ssid: Fan Controller
+    manual_ip:
+      static_ip: 192.168.32.1
+      gateway: 192.168.32.1
+      subnet: 255.255.255.0
+
+api:
+  reboot_timeout: 0s
+
+ota:
+
+esp32_improv:
+  authorizer: none
+  status_indicator: alarm_led
+
+improv_serial:
+
+i2c:
+  sda: GPIO22
+  scl: GPIO21
+
+emc2101:
+  pwm:
+    resolution: 8
+
+status_led:
+  pin:
+    number: GPIO02
+    inverted: true
+
+button:
+  # Reboot button.
+  - platform: restart
+    id: ${device_id}_reboot
+    name: Reboot
+
+sensor:
+  # Wifi signal sensor.
+  - platform: wifi_signal
+    name: RSSI
+
+  - platform: emc2101
+    internal_temperature:
+      name: Internal Temperature Sensor
+    external_temperature:
+      name: External Temperature Sensor
+    speed:
+      name: Speed Sensor
+    duty_cycle:
+      name: Duty Cycle Sensor
+    update_interval: 5s
+
+binary_sensor:
+  # Status sensor.
+  - platform: status
+    name: Status
+
+  # Toggle button sensor.
+  - platform: gpio
+    id: fan_toggle_button
+    pin:
+      number: GPIO25
+      mode: 
+        pullup: true
+      inverted: true
+    on_click:
+      - then:
+          - fan.toggle: ${device_id}_fan
+      - min_length: 5s
+        then:
+          - button.press: ${device_id}_reboot
+
+text_sensor:
+  # Version sensor.
+  - platform: version
+    name: Version
+
+output:
+  # Fan PWM output.
+  - platform: emc2101
+    id: fan_duty_cycle
+
+  # Alarm led output.
+  - platform: gpio
+    id: alarm_led
+    pin: GPIO16
+
+fan:
+  # Fan component.
+  - platform: speed
+    id: ${device_id}_fan
+    name: Fan
+    output: fan_duty_cycle
+    speed_count: 16
