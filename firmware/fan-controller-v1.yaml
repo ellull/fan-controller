@@ -34,7 +34,6 @@ wifi:
   enable_rrm: true
   
   ap:
-    ssid: Fan Controller
     manual_ip:
       static_ip: 192.168.32.1
       gateway: 192.168.32.1

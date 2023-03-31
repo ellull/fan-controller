@@ -19,5 +19,13 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - uses: esphome/build-action@v1
+              id: firmware-build
               with:
                 yaml_file: firmware/fan-controller-v1.yaml
+            - run: |
+                mkdir output
+                mv "${{ steps.firmware-build.outputs.name }}" output/
+            - uses: actions/upload-artifact@v3.1.2
+              with:
+                name: fan-controller-v1
+                path: output
