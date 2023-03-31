@@ -2,12 +2,16 @@ name: Compile Firmware
 
 on:
     pull_request:
+        paths:
+            - firmware/*.yaml
         branches:
             - main
     push:
         branches:
             - main
-
+        paths:
+            - firmware/*.yaml
+    
 jobs:
     build:
         runs-on: ubuntu-latest
