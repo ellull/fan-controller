@@ -10,7 +10,7 @@ external_components:
 
 dashboard_import:
   package_import_url: github://ellull/fan-controller/fan-controller-v1.yaml@v1
-  import_full_config: false
+  import_full_config: true
 
 esphome:
   name: ${device_name}
