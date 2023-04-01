@@ -57,8 +57,8 @@ jobs:
           path: "${{ steps.firmware-build.outputs.name }}"
 
   results:
-    if: ${{ always() }}
     name: All firmwares compiled
+    if: ${{ always() }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -72,10 +72,12 @@ jobs:
           fi
 
   create_release:
-    if: startsWith(github.ref, 'refs/tags/')
     name: Create Release
+    if: startsWith(github.ref, 'refs/tags/')
     needs: [build]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v3
