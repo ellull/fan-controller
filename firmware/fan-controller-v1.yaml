@@ -68,27 +68,39 @@ button:
   - platform: restart
     id: ${device_id}_reboot
     name: Reboot
+    disabled_by_default: true
 
 sensor:
   # Wifi signal sensor.
   - platform: wifi_signal
     name: RSSI
+    disabled_by_default: true
 
   - platform: emc2101
+    # EMC2101 internal temperature sensor
     internal_temperature:
       name: Internal Temperature Sensor
+      disabled_by_default: true
+
+    # EMC2101 external temperature sensor
     external_temperature:
       name: External Temperature Sensor
+
+    # Fan speed sensor
     speed:
       name: Speed Sensor
+
+    # Fan duty cycle sensor
     duty_cycle:
       name: Duty Cycle Sensor
+      disabled_by_default: true
     update_interval: 5s
 
 binary_sensor:
   # Status sensor.
   - platform: status
     name: Status
+    disabled_by_default: true
 
   # Toggle button sensor.
   - platform: gpio
@@ -109,6 +121,7 @@ text_sensor:
   # Version sensor.
   - platform: version
     name: Version
+    disabled_by_default: true
 
 output:
   # Fan PWM output.
