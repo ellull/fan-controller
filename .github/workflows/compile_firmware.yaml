@@ -1,45 +1,61 @@
-name: Compile Firmware
+name: Compile Firmwares
 
 on:
-    pull_request:
-        branches:
-            - main
-        paths:
-            - firmware/*.yaml
-    push:
-        branches:
-            - main
-        paths:
-            - firmware/*.yaml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - firmware/*.yaml
+
+  push:
+    branches:
+      - main
+    paths:
+      - firmware/*.yaml
     
 jobs:
-    prepare:
-        runs-on: ubuntu-latest
-        outputs:
-          files: ${{ steps.files-array.outputs.files }}
-        steps:
-          - uses: actions/checkout@v3
-          - name: prepare firmware files
-            id: files-array 
-            run: |
-              files=$(echo -n "$(ls firmware/*.yaml)" | jq -Rcns 'input | . / "\n"')
-              echo "files=$files" >> $GITHUB_OUTPUT
-    
-    build:
-        name: Build firmware from ${{ matrix.file }}
-        needs: [prepare]
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-              file: ${{ fromJson(needs.prepare.outputs.files) }}
-        steps:
-            - uses: actions/checkout@v3
-            - uses: esphome/build-action@v1
-              id: firmware-build
-              with:
-                yaml_file: ${{ matrix.file }}
-            - uses: actions/upload-artifact@v3
-              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-              with:
-                name: "${{ steps.firmware-build.outputs.name }}"
-                path: "${{ steps.firmware-build.outputs.name }}"
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.files-array.outputs.files }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: prepare firmware files
+        id: files-array 
+        run: |
+          files=$(echo -n "$(ls firmware/*.yaml)" | jq -Rcns 'input | . / "\n"')
+          echo "files=$files" >> $GITHUB_OUTPUT
+  
+  build:
+    name: Build firmware from ${{ matrix.file }}
+    needs: [prepare]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file: ${{ fromJson(needs.prepare.outputs.files) }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: esphome/build-action@v1
+        id: firmware-build
+        with:
+          yaml_file: ${{ matrix.file }}
+      - uses: actions/upload-artifact@v3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          name: "${{ steps.firmware-build.outputs.name }}"
+          path: "${{ steps.firmware-build.outputs.name }}"
+
+  results:
+    if: ${{ always() }}
+    name: All firmwares compiled
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          result="${{ needs.build.result }}"
+          if [[ $result == "success" || $result == "skipped" ]]; then
+            exit 0
+          else
+            exit 1
+          fi
