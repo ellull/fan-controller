@@ -32,22 +32,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
       - name: Download release assets
         uses: duhow/download-github-release-assets@v1.1.1
         with:
           tag: ${{ github.event.release.tag_name }}
-          files: |
-            fan-controller-esp32.bin
-            manifest.json
-          target: docs/fan-controller-esp32/
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+          files: firmwares.zip
+          target: output/
+
+      - name: Create manifest.json
+        run: |
+          jq -s '{"name": "Fan Controller", "version": "${{ github.event.release.tag_name }}", "home_assistant_domain": "esphome", "new_install_skip_erase": false, "builds":.}' output/*/manifest.json > output/manifest.json
+
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+      - name: Copy static files
+        run: |
+          cp -R docs/* output/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: docs/          
+          path: output/
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
