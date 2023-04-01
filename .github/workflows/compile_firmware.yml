@@ -23,9 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       files: ${{ steps.files-array.outputs.files }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Find firmware files
         id: files-array 
         run: |
@@ -36,23 +38,29 @@ jobs:
     name: Build firmware from ${{ matrix.file }}
     needs: [prepare]
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         file: ${{ fromJson(needs.prepare.outputs.files) }}
+
     outputs:
       names: ${{ steps.firmware-build.outputs.name }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Build firmware
         uses: esphome/build-action@v1
         id: firmware-build
         with:
           yaml_file: ${{ matrix.file }}
+
       - name: Organize firmware
         run: |
           mkdir output/
           mv "${{ steps.firmware-build.outputs.name }}" output/
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
@@ -65,6 +73,7 @@ jobs:
     if: ${{ always() }}
     needs: [build]
     runs-on: ubuntu-latest
+
     steps:
       - name: Check firmware build
         run: |
@@ -82,16 +91,19 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: firmwares
           path: output
+
       - name: Zip firmwares
         run: |
           cd output
           zip -r -q firmwares.zip .
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
