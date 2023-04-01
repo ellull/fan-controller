@@ -30,7 +30,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,13 +41,13 @@ jobs:
           files: |
             fan-controller-esp32.bin
             manifest.json
-          target: espwebtools/fan-controller-esp32
+          target: docs/fan-controller-esp32/
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: espwebtools          
+          path: docs/          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
