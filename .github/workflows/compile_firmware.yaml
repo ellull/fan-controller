@@ -19,10 +19,11 @@ jobs:
           files: ${{ steps.files-array.outputs.files }}
         steps:
           - uses: actions/checkout@v3
-          - id: files-array
+          - name: prepare firmware files
+            id: files-array 
             run: |
               files=$(echo -n "$(ls firmware/*.yaml)" | jq -Rcns 'input | . / "\n"')
-              echo ::set-output name=files::$files
+              echo "{name}={value}" >> $GITHUB_OUTPUT
     
     build:
         name: Build firmware from ${{ matrix.file }}
