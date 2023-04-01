@@ -23,7 +23,7 @@ jobs:
             id: files-array 
             run: |
               files=$(echo -n "$(ls firmware/*.yaml)" | jq -Rcns 'input | . / "\n"')
-              echo "{name}={value}" >> $GITHUB_OUTPUT
+              echo "files=$files" >> $GITHUB_OUTPUT
     
     build:
         name: Build firmware from ${{ matrix.file }}
