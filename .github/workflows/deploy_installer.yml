@@ -40,7 +40,10 @@ jobs:
         with:
           tag: ${{ github.event.release.tag_name }}
           files: firmwares.zip
-          target: output/
+
+      - name: Unzip firmwares
+        run: |
+          unzip firmwares.zip -d output/
 
       - name: Create manifest.json
         run: |
