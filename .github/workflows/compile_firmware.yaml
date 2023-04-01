@@ -12,7 +12,9 @@ on:
       - main
     paths:
       - firmware/*.yaml
-    
+
+  workflow_dispatch:
+      
 jobs:
   prepare:
     name: Prepare
