@@ -37,6 +37,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.release.tag_name }}
   
       - name: Download release assets
         uses: duhow/download-github-release-assets@v1.1.1
@@ -64,3 +66,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
+      - uses: haya14busa/action-update-semver@v1
+        with:
+          tag: ${{ github.event.release.tag_name }}
+          major_version_tag_only: true
