@@ -10,7 +10,11 @@ on:
   push:
     tags:
       - v*.*.*
-
+    branches:
+      - main
+    paths:
+      - firmware/*.yaml
+  
   workflow_dispatch:
       
 jobs:
