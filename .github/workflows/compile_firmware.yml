@@ -10,6 +10,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - v*
     paths:
       - firmware/*.yaml
 
@@ -22,8 +24,9 @@ jobs:
     outputs:
       files: ${{ steps.files-array.outputs.files }}
     steps:
-      - uses: actions/checkout@v3
-      - name: prepare firmware files
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Find firmware files
         id: files-array 
         run: |
           files=$(echo -n "$(ls firmware/*.yaml)" | jq -Rcns 'input | . / "\n"')
@@ -36,16 +39,20 @@ jobs:
     strategy:
       matrix:
         file: ${{ fromJson(needs.prepare.outputs.files) }}
+    outputs:
+      names: ${{ steps.firmware-build.outputs.name }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: esphome/build-action@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build firmware
+        uses: esphome/build-action@v1
         id: firmware-build
         with:
           yaml_file: ${{ matrix.file }}
-      - uses: actions/upload-artifact@v3
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         with:
-          name: "${{ steps.firmware-build.outputs.name }}"
           path: "${{ steps.firmware-build.outputs.name }}"
 
   results:
@@ -54,10 +61,29 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Check firmware build
+        run: |
           result="${{ needs.build.result }}"
           if [[ $result == "success" || $result == "skipped" ]]; then
             exit 0
           else
             exit 1
           fi
+
+  create_release:
+    if: startsWith(github.ref, 'refs/tags/')
+    name: Create Release
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: output
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          files: output/*        
