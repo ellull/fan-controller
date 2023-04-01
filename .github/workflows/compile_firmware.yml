@@ -49,12 +49,16 @@ jobs:
         id: firmware-build
         with:
           yaml_file: ${{ matrix.file }}
+      - name: Organize firmware
+        run: |
+          mkdir output/
+          mv "${{ steps.firmware-build.outputs.name }}" output/
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         with:
           name: firmwares
-          path: "${{ steps.firmware-build.outputs.name }}"
+          path: output
 
   results:
     name: All firmwares compiled
