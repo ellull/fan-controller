@@ -53,6 +53,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         with:
+          name: firmwares
           path: "${{ steps.firmware-build.outputs.name }}"
 
   results:
@@ -79,6 +80,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
+          name: firmwares
           path: output
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -86,4 +88,4 @@ jobs:
           draft: true
           fail_on_unmatched_files: true
           generate_release_notes: true
-          files: output/*        
+          files: output/**/*.*
