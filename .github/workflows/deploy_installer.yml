@@ -1,4 +1,4 @@
-name: Deploy installer to Pages
+name: Deploy web installer
 
 on:
   # Runs when a release is prereleased or released
