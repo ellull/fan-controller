@@ -1,6 +1,6 @@
 substitutions:
-  device_id: fan_controller
-  device_name: fan-controller
+  name: fan-controller
+  friendly_name: Fan Controller
 
 external_components:
   - source: github://pr#4491
@@ -13,9 +13,9 @@ dashboard_import:
   import_full_config: true
 
 esphome:
-  name: ${device_name}
+  name: ${name}
   name_add_mac_suffix: true
-  friendly_name: Fan Controller
+  friendly_name: ${friendly_name}
   comment: Fan controller for ESPHome
   project:
     name: ellull.fan-controller
@@ -66,7 +66,7 @@ status_led:
 button:
   # Reboot button.
   - platform: restart
-    id: ${device_id}_reboot
+    id: reboot
     name: Reboot
     disabled_by_default: true
 
@@ -114,10 +114,10 @@ binary_sensor:
       inverted: true
     on_click:
       - then:
-          - fan.toggle: ${device_id}_fan
+          - fan.toggle: fan
       - min_length: 5s
         then:
-          - button.press: ${device_id}_reboot
+          - button.press: reboot
 
 text_sensor:
   # Version sensor.
@@ -138,7 +138,7 @@ output:
 fan:
   # Fan component.
   - platform: speed
-    id: ${device_id}_fan
+    id: fan
     name: Fan
     output: fan_duty_cycle
     speed_count: 16
