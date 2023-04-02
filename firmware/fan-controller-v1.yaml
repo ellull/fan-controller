@@ -19,7 +19,7 @@ esphome:
   comment: Fan controller for ESPHome
   project:
     name: ellull.fan-controller
-    version: "1.0"
+    version: 1.0.0-alpha
 
 esp32:
   board: wemos_d1_mini32
@@ -77,6 +77,8 @@ sensor:
     disabled_by_default: true
 
   - platform: emc2101
+    update_interval: 5s
+
     # EMC2101 internal temperature sensor.
     internal_temperature:
       name: Internal Temperature Sensor
@@ -94,7 +96,6 @@ sensor:
     duty_cycle:
       name: Duty Cycle Sensor
       disabled_by_default: true
-    update_interval: 5s
 
 binary_sensor:
   # Status sensor.
@@ -102,12 +103,13 @@ binary_sensor:
     name: Status
     disabled_by_default: true
 
-  # Toggle button sensor.
+  # Fan toggle + reboot button sensor.
   - platform: gpio
     id: fan_toggle_button
     pin:
       number: GPIO25
       mode: 
+        input: true
         pullup: true
       inverted: true
     on_click:
