@@ -9,8 +9,8 @@ external_components:
       - emc2101
 
 dashboard_import:
-  package_import_url: github://ellull/fan-controller/fan-controller-v1.yaml@v1
-  import_full_config: false
+  package_import_url: github://ellull/fan-controller/firmware/fan-controller-v1.yaml@v1
+  import_full_config: true
 
 esphome:
   name: ${name}
