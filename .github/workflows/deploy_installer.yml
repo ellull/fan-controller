@@ -47,7 +47,7 @@ jobs:
 
       - name: Create manifest.json
         run: |
-          jq -s '{"name": "Fan Controller", "version": "${{ github.event.release.tag_name }}", "home_assistant_domain": "esphome", "new_install_skip_erase": false, "builds":.}' output/*/manifest.json > output/manifest.json
+          jq -s '{"name": "Fan Controller", "version": "${{ github.event.release.tag_name }}", "home_assistant_domain": "esphome", "new_install_skip_erase": true, "builds":.}' output/*/manifest.json > output/manifest.json
 
       - name: Copy static files
         run: |
