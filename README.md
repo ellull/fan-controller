@@ -20,6 +20,7 @@ Features:
 
 Future features:
  - Physical buttons to adjust the fan speed.
+ - Alarm LED.
 
  It also exposes 8 additional GPIO pins for future extensibility.
 
