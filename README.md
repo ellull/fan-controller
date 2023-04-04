@@ -1,7 +1,13 @@
+[![Compile Firmwares](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml/badge.svg?branch=main&event=push)](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+
 Fan Controller
 ==============
 
-![PCB top view](docs/pcb-photo-view-top.svg) ![PCB bottom view](docs/pcb-photo-view-bottom.svg)
+{:.text-align-center}
+![PCB top view](docs/pcb-photo-view-top.svg)
+![PCB bottom view](docs/pcb-photo-view-bottom.svg)
 
 This is a 5V PWM fan controller built around an [ESP32](https://www.espressif.com/en/products/socs/esp32) microcontroller.
 
@@ -22,12 +28,12 @@ Future features:
 Usage
 -----
 
-WIP
-
-- Download the Gerber file and order the PCB to the manufacturer of your choice.
+- Download the [Gerber file](hardware/Gerber_Fan Controller PCB.zip) and order the PCB to the manufacturer of your choice.
 - Download the [BOM file](hardware/BOM.tsv) and order the components.
 - Assemble the board.
-- Upload the firmware.
+- Install the firmware:
+  - Using the [web installer](https://llull.net/fan-controller/).
+  - Download the [latest firmware](releases/latest/download/fan-controller-esp32.bin). Visit the [last release page](releases/latest) to see what's changed.
 - Integrate in Home Assistant.
 - Aditionally: add the device to the ESPHome dashboard.
 
@@ -65,6 +71,8 @@ I assembled all the components in a breadboard and started coding an [ESPHome ex
 
 With the external component working fine for a few months, on May 29, 2022 I created [a draft pull request](https://github.com/esphome/esphome/pull/3517). But life is unpredictable and I needed to pause the whole project: I could not even send the PR for review. On 24 Feb 2023 the github-actions bot closed it, and, just a couple days later I was able to work again on the project and created [a new pull request](https://github.com/esphome/esphome/pull/4491).
 
-I also designed a PCB to replace the perfboard and decided to publish the PCB schematics, design and [BOM](https://en.wikipedia.org/wiki/Bill_of_materials) and the firmware as [Open Source Hardware](https://www.oshwa.org/definition/) in this repository. You can find them in the `hardware` and `firmware` directories.
+I also designed a PCB to replace the perfboard and decided to publish the PCB schematics, PCB design, [BOM](https://en.wikipedia.org/wiki/Bill_of_materials) and firmware as [Open Source Hardware](https://www.oshwa.org/definition/) in this repository. You can find them in the `hardware` and `firmware` directories.
+
+All the files are released under a [Creative Commons Attribution ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
 
 It've been a very fun project :satisfied:.
