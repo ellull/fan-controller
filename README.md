@@ -30,9 +30,9 @@ Usage
 - Download the [Gerber file](hardware/Gerber_Fan Controller PCB.zip) and order the PCB to the manufacturer of your choice.
 - Download the [BOM file](hardware/BOM.tsv) and order the components.
 - Assemble the board.
-- Install the firmware:
+- Install the latest firmware. Visit the [last release page](https://github.com/ellull/fan-controller/releases/latest) to see what's changed.
   - Using the [web installer](https://llull.net/fan-controller/).
-  - Download the [latest firmware](https://github.com/ellull/fan-controller/releases/latest/download/fan-controller-esp32.bin). Visit the [last release page](https://github.com/ellull/fan-controller/releases/latest) to see what's changed.
+  - Download the [latest firmware](https://github.com/ellull/fan-controller/releases/latest/download/fan-controller-esp32.bin) and upload it to the ESP32 with [ESP Tool](https://github.com/espressif/esptool).
 - Integrate in Home Assistant.
 - Aditionally: add the device to the ESPHome dashboard.
 
