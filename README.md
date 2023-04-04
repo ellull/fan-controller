@@ -5,9 +5,10 @@
 Fan Controller
 ==============
 
-{:.text-align-center}
+<div text-align="center">
 ![PCB top view](docs/pcb-photo-view-top.svg)
 ![PCB bottom view](docs/pcb-photo-view-bottom.svg)
+</div>
 
 This is a 5V PWM fan controller built around an [ESP32](https://www.espressif.com/en/products/socs/esp32) microcontroller.
 
@@ -33,7 +34,7 @@ Usage
 - Assemble the board.
 - Install the firmware:
   - Using the [web installer](https://llull.net/fan-controller/).
-  - Download the [latest firmware](releases/latest/download/fan-controller-esp32.bin). Visit the [last release page](releases/latest) to see what's changed.
+  - Download the [latest firmware](/ellull/fan-controller/releases/latest/download/fan-controller-esp32.bin). Visit the [last release page](/ellull/fan-controller/releases/latest) to see what's changed.
 - Integrate in Home Assistant.
 - Aditionally: add the device to the ESPHome dashboard.
 
