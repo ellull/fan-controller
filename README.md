@@ -28,7 +28,7 @@ Future features:
 Usage
 -----
 
-- Download the [Gerber file](hardware/Gerber_Fan Controller PCB.zip) and order the PCB to the manufacturer of your choice.
+- Download the [Gerber file](<hardware/Gerber_Fan Controller PCB.zip>) and order the PCB to the manufacturer of your choice.
 - Download the [BOM file](hardware/BOM.tsv) and order the components.
 - Assemble the board.
 - Install the latest firmware. Visit the [last release page](https://github.com/ellull/fan-controller/releases/latest) to see what's changed.
