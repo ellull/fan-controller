@@ -49,7 +49,7 @@ The schematics and the PCB design are available in the `hardware` directory:
 
 I used [EasyEDA](https://easyeda.com/), which is a free of charge tool, for their design.
 
-The ESPHome YAML file to build the firmware can be found in the `firmware` directory. I've can confirm it compiles with [ESPHome](https://esphome.io/) v2023.3.
+The ESPHome YAML file to build the firmware can be found in the `firmware` directory. It has been tested with [ESPHome](https://esphome.io/) v2023.3.
 
 
 A bit of history
