@@ -28,7 +28,9 @@ Future features:
 Build your own
 --------------
 
-- Download the [Gerber file](<hardware/Gerber_Fan Controller PCB.zip>) and order the PCB to the manufacturer of your choice.
+
+
+- Download the [Gerber file](<hardware/Gerber_Fan Controller PCB.zip>) and order the PCB to the manufacturer of your choice. :warning: Currently (5 April 2023) I'm waiting for the PCB to arrive. Until I've tested it I cannot confirm the Gerber file doesn't have any problem.
 - Download the [BOM file](hardware/BOM.tsv) and order the components.
 - Assemble the board.
 - Install the latest firmware. Visit the [last release page](https://github.com/ellull/fan-controller/releases/latest) to see what's changed.
