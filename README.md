@@ -42,9 +42,9 @@ Modify the design
 -----------------
 
 The schematics and the PCB design are available in the `hardware` directory:
-- [Schematics](hardware/SCH_Fan_Controller_2023-04-04.json)
+- [Schematics](hardware/SCH_Fan_Controller_2023-04-04.json)  
   ![Schematics image](docs/Schematic.svg)
-- [PCB design](hardware/PCB_Fan_Controller_2023-04-04.json)
+- [PCB design](hardware/PCB_Fan_Controller_2023-04-04.json)  
   ![PCB design image](docs/PCB.svg)
 
 I used [EasyEDA](https://easyeda.com/), which is a free of charge tool, for their design.
