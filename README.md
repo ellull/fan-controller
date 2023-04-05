@@ -1,5 +1,6 @@
-[![Compile Firmwares](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml/badge.svg?branch=main&event=push)](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![ESPHome release](https://img.shields.io/static/v1?label=ESPHome&message=2023.3.2&color=green&logo=esphome)](https://github.com/esphome/esphome/releases/tag/2023.3.2)
+[![Compile Firmwares](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml/badge.svg?branch=main&event=push)](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml)
 
 
 Fan Controller
@@ -51,7 +52,7 @@ The schematics and the PCB design are available in the `hardware` directory:
 
 I used [EasyEDA](https://easyeda.com/), which is a free of charge tool, for their design.
 
-The ESPHome YAML file to build the firmware can be found in the `firmware` directory. It has been tested with [ESPHome](https://esphome.io/) v2023.3.
+The ESPHome YAML file to build the firmware can be found in the `firmware` directory. It has been tested with [ESPHome](https://esphome.io/) v2023.3.2.
 
 
 A bit of history
