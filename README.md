@@ -1,5 +1,5 @@
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
-[![ESPHome release](https://img.shields.io/static/v1?label=ESPHome&message=2023.3.2&color=brightgreen&logo=esphome&logo=esphome)](https://github.com/esphome/esphome/releases/tag/2023.3.2)
+[![ESPHome release](https://img.shields.io/static/v1?label=ESPHome&message=2023.3.2&color=brightgreen&style=plastic&logo=esphome)](https://github.com/esphome/esphome/releases/tag/2023.3.2)
 [![Compile Firmwares](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml/badge.svg?branch=main&event=push)](https://github.com/ellull/fan-controller/actions/workflows/compile_firmware.yml)
 
 
