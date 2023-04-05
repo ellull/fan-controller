@@ -25,8 +25,8 @@ Future features:
  It also exposes 8 additional GPIO pins for future extensibility.
 
 
-Usage
------
+Build your own
+--------------
 
 - Download the [Gerber file](<hardware/Gerber_Fan Controller PCB.zip>) and order the PCB to the manufacturer of your choice.
 - Download the [BOM file](hardware/BOM.tsv) and order the components.
@@ -36,6 +36,18 @@ Usage
   - Download the [latest firmware](https://github.com/ellull/fan-controller/releases/latest/download/fan-controller-esp32.bin) and upload it to the ESP32 with [ESP Tool](https://github.com/espressif/esptool).
 - Integrate in Home Assistant.
 - Aditionally: add the device to the ESPHome dashboard.
+
+
+Modify the design
+-----------------
+
+The schematics and the PCB design are available in the `hardware` directory:
+- [Schematics](hardware/SCH_Fan_Controller_2023-04-04.json)
+- [PCB design](hardware/PCB_Fan_Controller_2023-04-04.json)
+
+I used [EasyEDA](https://easyeda.com/), which is a free of charge tool, for their design.
+
+The ESPHome YAML file to build the firmware can be found in the `firmware` directory. I've can confirm it compiles with [ESPHome](https://esphome.io/) v2023.3.
 
 
 A bit of history
@@ -55,7 +67,7 @@ So, the initial design requirements were:
 
 It was clear that the project would require a microcontroller and I preferred to use wifi for communications so an ESP32 (successor of the [ESP8266](https://www.espressif.com/en/products/socs/esp8266)) was a natural choice.
  
-While investigating the easyest way to integrate an ESP32 in Home Assitant I found [ESPHome](https://esphome.io/), also from [Nabu Casa](https://www.nabucasa.com/). Using ESPHome to build the controller firmware also meant that less coding would be required.
+While investigating the easyest way to integrate an ESP32 in Home Assitant I found ESPHome, also from [Nabu Casa](https://www.nabucasa.com/). Using ESPHome to build the controller firmware also meant that less coding would be required.
 
 As the fan I decided to use a [Noctua NF-A12x25 5V PWM](https://noctua.at/en/products/fan/nf-a12x25-5v-pwm) because it was quiet, its speed could be controlled with a PWM signal and it could also be powered by the same 5V power supply I was planning to use to power the microcontroller.
 
