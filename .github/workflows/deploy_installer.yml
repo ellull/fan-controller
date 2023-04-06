@@ -36,10 +36,10 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
   
       - name: Download release assets
-        uses: duhow/download-github-release-assets@v1.1.1
+        uses: robinraju/release-downloader@v1.7
         with:
           tag: ${{ github.event.release.tag_name }}
-          files: firmwares.zip
+          fileName: firmwares.zip
 
       - name: Unzip firmwares
         run: |
