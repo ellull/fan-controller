@@ -35,7 +35,7 @@ Build your own
 - Download the [BOM file](hardware/BOM.tsv) and order the components.
 - Assemble the board.
 - Install the latest firmware. Visit the [last release page](https://github.com/ellull/fan-controller/releases/latest) to see what's changed.
-  - Using the [web installer](https://llull.net/fan-controller/).
+  - Using the [web installer](https://ellull.github.io/fan-controller/).
   - Download the [latest firmware](https://github.com/ellull/fan-controller/releases/latest/download/fan-controller-esp32.bin) and upload it to the ESP32 with [ESP Tool](https://github.com/espressif/esptool).
 - Integrate in Home Assistant.
 - Aditionally: add the device to the ESPHome dashboard.
